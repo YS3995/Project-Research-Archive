@@ -1,0 +1,777 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    <%@ page import="zkart.jsp.AccessProperties" %>
+    <%@ page import="zkart.jsp.CreateProperties" %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Seller Hub</title>
+<%@include file="metaContent.jsp" %>
+	<script src="global.js"></script>
+
+</head>
+<body>
+<%@include file="headerSeller.jsp" %>
+  <%
+  if (request.getParameter("id") != null)
+  {
+		String x = request.getParameter("id");
+		out.println("Successful "+ x );
+  }
+  %>
+
+<div class="body-content outer-top-xs">
+  <div class="container">
+    <div class="row">
+     	<%@include file="sidebarSeller.jsp" %>
+      <div class="col-md-9">
+        <!-- ========================================== SECTION – HERO ========================================= -->
+
+	<form id="insert_data" action="" method="post" name="form1" enctype="multipart/form-data">
+        <div class="search-result-container ">
+           <div class="sidebar-widget wow fadeInUp" style="visibility: hidden; animation-name: none;">
+              <div class="row">
+	              <div class="widget-header" style="margin-bottom:10px; margin-left:15px;">
+	                <h3 class="widget-title"  style="color:#FF0000;"><B>ADD AN ITEM</B></h3>
+	              </div>
+              </div>
+		     <div class="row">
+		      	<div class="col-sm-5 sidebar">
+	              <h4 class="widget-title"><B>CATEGORY<label style="color:red; padding-left:3px;">  *</label></B></h4>
+	            </div>
+
+		      	<div class="col-sm-5 sidebar" id ="sub-cat-head">
+	              <h4 class="widget-title"><B>SUB-CATEGORY<label style="color:red; padding-left:3px;">  *</label></B></h4>
+	            </div>
+	            <div class="col-md-2 sidebar"> </div>
+	        </div>
+		    <div class="row">
+		        <div class="col-sm-5 sidebar" id ="cat-content" >
+	            </div>
+
+		        <div class="col-sm-5 sidebar" id ="sub-cat-content">
+	            </div>
+	            <div class="col-md-2 sidebar"> </div>
+	        </div>
+              <!-- /.sidebar-widget-body -->
+          </div>
+
+
+
+      </div>
+       <div class="search-result-container ">
+            <div class="sidebar-widget wow fadeInUp" style="visibility: hidden; animation-name: none;">
+	            <div class="widget-header">
+	                <h4 class="widget-title"><B>ITEM ID<label style="color:red; padding-left:3px;">  *</label></B></h4>
+	            </div>
+			    <div class="row">
+			      <div class="col-md-5 sidebar">
+		              <input type="text" class="form-control input-lg"  name="itemId" id="itemid" required>
+		          </div>
+		         </div>
+		         <input type="text" id="catname1" name="catname1" hidden="hidden"/>
+		         <input type="text" id="subcatname1" name="subCategoryId" hidden="hidden"/>
+        		</div>
+      	</div>
+
+        <div class="search-result-container ">
+            <div class="sidebar-widget wow fadeInUp" style="visibility: hidden; animation-name: none;">
+	              <div class= "row">
+	             	 <div class="col-md-5 sidebar">
+			            <div class="widget-header">
+		                		<h4 class="widget-title"><B>ITEM NAME<label style="color:red; padding-left:3px;">  *</label></B></h4>
+		              	</div>
+			         </div>
+
+		          </div>
+
+				  <div class="row">
+				     <div class="col-md-5 sidebar">
+			              <input type="text" class="form-control input-lg" id="listingName" name="listingname"  required>
+			         </div>
+
+			      </div>
+            </div>
+        <!-- /.search-result-container -->
+
+      </div>
+      <!-- /.col -->
+
+        <div class="search-result-container ">
+            <div class="sidebar-widget wow fadeInUp" style="visibility: hidden; animation-name: none;">
+	            <div class="widget-header">
+	                <h4 class="widget-title"><B>BRAND<label style="color:red; padding-left:3px;">  *</label></B></h4>
+	            </div>
+			    <div class="row">
+			      <div class="col-md-5 sidebar">
+		              <input type="text" class="form-control input-lg"  name="brand" id="brand"
+		              autocomplete="name" required>
+		          </div>
+		         </div>
+        		</div>
+      	</div>
+        <div id="dynamicFilters">
+        </div>
+        <div class="search-result-container ">
+            <div class="sidebar-widget wow fadeInUp" style="visibility: hidden; animation-name: none;">
+	            <div class="widget-header">
+	                <h4 class="widget-title"><B>QUANTITY<label style="color:red; padding-left:3px;">  *</label></B></h4>
+	            </div>
+			    <div class="row">
+			      <div class="col-md-5 sidebar">
+		              <input type="number" class="form-control input-lg"  name="quantity" id="qty"
+		              autocomplete="name" required>
+		              <input type="text" id="cnt" name="cnt" hidden="hidden"/>
+		          </div>
+		         </div>
+        		</div>
+      	</div>
+      	 <div class="search-result-container ">
+            <div class="sidebar-widget wow fadeInUp" style="visibility: hidden; animation-name: none;">
+	            <div class="widget-header">
+	                <h4 class="widget-title"><B>PRICE<label style="color:red; padding-left:3px;">  *</label></B></h4>
+	            </div>
+			    <div class="row">
+			      <div class="col-md-5 sidebar">
+		              <input type="text" class="form-control input-lg"  name="price" id="price"
+		              autocomplete="name" required >
+		          </div>
+		         </div>
+        		</div>
+      	</div>
+       	 <div class="search-result-container ">
+            <div class="sidebar-widget wow fadeInUp" style="visibility: hidden; animation-name: none;">
+	            <div class="widget-header">
+	                <h4 class="widget-title"><B>DISCOUNT % <label style="color:red; padding-left:3px;">  *</label></B></h4>
+	            </div>
+			    <div class="row">
+			      <div class="col-md-5 sidebar">
+		              <input type="number" class="form-control input-lg"  name="discount" id="dis" value="0"  max="99"
+		              autocomplete="name" required>
+		          </div>
+		         </div>
+        		</div>
+      	</div>
+
+
+		   <div class="search-result-container ">
+		            <div class="sidebar-widget wow fadeInUp" style="visibility: hidden; animation-name: none;">
+			            <div class="widget-header">
+			                <h4 class="widget-title"><B>B'DAY DISCOUNT % <label style="color:red; padding-left:3px;">  *</label></B></h4>
+			            </div>
+					    <div class="row">
+					      <div class="col-md-5 sidebar">
+				              <input type="number" class="form-control input-lg"  name="bdaydiscount" id="bdaydiscount" value="0"  max="99"
+				              autocomplete="name" required>
+				          </div>
+				         </div>
+		        		</div>
+		      	</div>
+
+      	 <div class="search-result-container ">
+            <div class="sidebar-widget wow fadeInUp" style="visibility: hidden; animation-name: none;">
+	            <div class="widget-header">
+	                <h4 class="widget-title"><B>COLOR<label style="color:red; padding-left:3px;">  *</label></B></h4>
+	            </div>
+	            <span name="colourSpan" id="clrSpan"></span>
+
+
+	<!--		    <div class="row">
+			      <div class="col-md-5 sidebar">
+			        <select  id  = "clr" name="colour"  style="margin:20px;background-color: white; font-size: 19px;" required>
+			      	   <option value="Black">Black</option>
+					   <option value="Blue">Blue</option>
+					   <option value="Green">Green</option>
+					   <option value="Brown">Brown</option>
+					   <option value="Magenta">Magenta</option>
+					   <option value="White">White</option>
+					   <option value="Peach">Peach</option>
+					   <option value="Red">Red</option>
+					   <option value="Orange">Orange</option>
+					   <option value="Grey">Grey</option>
+					   <option value="Cyan">Cyan</option>
+					   <option value="Gold">Gold</option>
+					   <option value="Transparent">Transparent</option>
+					</select>-->
+<!-- 		              <input type="text" class="form-control input-lg"  name="clr" id="clr"  -->
+<!-- 		              autocomplete="name"required > -->
+	<!--	          </div>
+		         </div>-->
+        		</div>
+      	  </div>
+
+
+      	 <div class="search-result-container ">
+            <div class="sidebar-widget wow fadeInUp" style="visibility: hidden; animation-name: none;">
+	            <div class="widget-header">
+	                <h4 class="widget-title"><B>MANUFACTURING DATE<label style="color:red; padding-left:3px;">  *</label></B></h4>
+	            </div>
+			    <div class="row">
+			      <div class="col-md-5 sidebar">
+		              <input type="date" class="form-control input-lg"  name="manufacture_Date" id="mfd"
+		              autocomplete="name" required >
+		          </div>
+		         </div>
+        		</div>
+      	</div>
+
+      	<div class="search-result-container ">
+            <div class="sidebar-widget wow fadeInUp" style="visibility: hidden; animation-name: none;">
+	            <div class="widget-header">
+	                <h4 class="widget-title"><B>DESCRIPTION</B></h4>
+	            </div>
+			    <div class="row">
+			    	   <div class="col-md-6 sidebar">
+				      <div class="form-group">
+					    <textarea class="form-control rounded-0" name ="description" id="desptn" rows="5"></textarea>
+				      </div>
+				    </div>
+		        </div>
+        		</div>
+      	</div>
+      <!-- /.col -->
+
+
+    <div class="search-result-container" >
+            <div class="sidebar-widget wow fadeInUp" style="visibility: hidden; animation-name: none;">
+	            <div class="widget-header">
+	                <h4 class="widget-title"><B>ADDITIONAL DETAILS</B></h4>
+	            </div>
+	            <div class= "row">
+	             	 <div class="col-md-5 sidebar">
+			            <div class="widget-header">
+		                		<h4 class="widget-title">Detail Name:</h4>
+		              	</div>
+			         </div>
+			         <div class="col-md-2 sidebar" style="margin-top:10px; ">
+					 </div>
+			         <div class="col-md-5 sidebar">
+			              <div class="widget-header">
+		                		<h4 class="widget-title">Detail Value:</h4>
+		              	  </div>
+			         </div>
+		          </div>
+				   	 <div id='TextBoxesGroup1'>
+						<!--  <div class="row" id="TextBoxDiv1" style="margin-bottom:8px;">
+							      <div class="col-md-5 sidebar">
+						              <input type="text" class="form-control input-lg"  name="key1" id="key1" >
+						          </div>
+						          <div class="col-md-2 sidebar" style="margin-top:10px; ">
+						          	<label ><b>:</b></label>
+						          </div>
+						          <div class="col-md-5 sidebar">
+						              <input type="text" class="form-control input-lg"  name="val1" id="val1" >
+						          </div>
+					         </div >  -->
+					</div>
+					<div class="row" style="text-align:center;">
+						 <div class="col-md-2 sidebar"></div>
+					     <div class="col-md-8 sidebar">
+					     	<input type="button" style="font-size:14px;color: white;
+   							padding: 4px 20px; background-color:#e7e7e7; color: black;" value="ADD" id="ADD">
+					     	<input type="button" style="font-size:14px;color: white;
+   							padding: 4px 20px; background-color:#e7e7e7; color: black;" value="DELETE" id="DEL1">
+					     </div>
+					      <div class="col-md-2 sidebar"></div>
+					</div>
+
+
+        		</div>
+      	</div>
+
+
+
+   </form>
+
+      <div class="search-result-container"  style="text-align:center;">
+            <div class="sidebar-widget wow fadeInUp" style="visibility: hidden; animation-name: none;">
+	            <div class="widget-header">
+   					<form id="f2" enctype="multipart/form-data" class="form-group" name="form2" method="POST">
+                  		<h4 class="widget-title"><B>  <label for="file"> Upload Image </label></B></h4>
+                    		<input type="file" placeholder="image" class="form-control" name="file" required>
+   					</form>
+   				</div>
+   			</div>
+   		</div>
+
+   <div class="search-result-container"  style="text-align:center;">
+
+
+
+
+	           		<input type="submit" style="font-size:18px;color: white;
+   							padding: 8px 20px; background-color: #4CAF50;" id="done" value="DONE"/>
+	 					<input type="text" id="sellerid" name="sellerid" hidden="hidden"/>
+	        			<input type="text" id="selleremail" name="selleremail" hidden="hidden"/>
+
+	            </div>
+
+
+        </div>
+
+    <!-- /.row -->
+     </div>
+  <!-- /.container -->
+  </div>
+</div>
+<!-- /.body-content -->
+
+
+<!-- JavaScripts placed at the end of the document so the pages load faster -->
+<script src="./bootstrapFiles/js/jquery-1.11.1.min.js"></script>
+<script src="./bootstrapFiles/js/bootstrap.js"></script>
+<script src="./bootstrapFiles/js/bootstrap.min.js"></script>
+<script src="./bootstrapFiles/js/bootstrap-hover-dropdown.min.js"></script>
+<script src="./bootstrapFiles/js/owl.carousel.min.js"></script>
+<script src="./bootstrapFiles/js/echo.min.js"></script>
+<script src="./bootstrapFiles/js/jquery.easing-1.3.min.js"></script>
+<script src="./bootstrapFiles/js/bootstrap-slider.min.js"></script>
+<script src="./bootstrapFiles/js/jquery.rateit.min.js"></script>
+<script src="./bootstrapFiles/js/bootstrap-select.min.js"></script>
+<script src="./bootstrapFiles/js/wow.min.js"></script>
+<script src="./bootstrapFiles/js/scripts.js"></script>
+<script src="./customJavascripts/cookies.js"></script>
+<script src="./bootstrapFiles/js/sweetalert.min.js"></script>
+<script>
+var filterCount=0;
+$(document).ready(function(){
+
+ 	 	checkCookie();
+		var counter = 0;
+		$('#cnt').val(counter);
+		$('#sub-cat-content').hide();
+		$('#sub-cat-head').hide();
+		fetch();
+		$('#DEL1').hide();
+
+		$("#cat-content").on("change",function() {
+		    var period = this.value;
+		    if (period=="0") return; // please select - possibly you want something else here
+
+		    $('#sub-cat-content').show();
+		    $('#sub-cat-head').show();
+		    var catId1 = getSelectedText('catId');
+		    $('#catname1').val(catId1);
+		    DispSubCat();
+		 });
+
+		$("#sub-cat-content").on("change",function() {
+
+		    var subcatId1 = getSelectedText('subcatId');
+		    $('#subcatname1').val(subcatId1);
+        populateFilters();
+        console.log("filterCount:"+filterCount);
+		 });
+
+		$('#ADD').click(function(){
+			counter++;
+			$('#cnt').val(counter);
+			var row1 = '<div class="row"  id="TextBoxDiv'+counter+'" style="margin-bottom:8px;">'+
+				'<div class="col-md-5 sidebar"> '+
+				'<input type="text" class="form-control input-lg"  name="key'+counter+'" id="key'+counter+'" required>'+
+				'</div>'+
+				'<div class="col-md-2 sidebar" style="margin-top:10px; ">'+
+				'<label><b>:</b></label>'+
+				'</div>'+
+				'<div class="col-md-5 sidebar"> '+
+				'<input type="text" class="form-control input-lg"  name="val'+counter+'" id="val'+counter+'" required>'+
+				'</div> '+
+				'</div > ';
+
+			$('#ADD').data('row1',row1);
+
+			$('#TextBoxesGroup1').append($(this).data('row1'));
+
+			if(counter==0)
+				$('#DEL1').hide();
+			else
+				$('#DEL1').show();
+		});
+
+
+		$('#DEL1').click(function(){
+			counter--;
+			$('#cnt').val(counter);
+			$('#TextBoxesGroup1 .row').eq(  $('#TextBoxesGroup1 .row').length-1 ).remove();
+			if(counter==0)
+				$('#DEL1').hide();
+		});
+		funky();
+		getColors();
+	})
+
+function getColors()
+{
+	$.ajax(
+    		{
+    			type : 'GET',
+    			contentType : 'application/json',
+    			url : ctxPath + "/color/",
+    			dataType : "json", // data type of response
+    			success : function(list)
+    			{
+    				var str="<select  id  = 'clr' name='colour'  style='margin:20px;background-color: white; font-size: 19px;' required>";
+    				for (i in list)
+    				{
+        				str=str+"<option value="+ list[i].color +">"+list[i].color+"</option>";
+        			}
+        			str+="</select>";
+    				document.getElementById("clrSpan").innerHTML=str;
+    	    	},
+    	    	error:function()
+    	    	{
+    	        	swal("error occurred");
+    	    	}
+    		});
+}
+
+function funky()
+{
+	var sbutton=document.getElementById('done');
+	sbutton.addEventListener('click',addItem);
+
+}
+
+function addItem()
+{
+	var x = document.forms.namedItem("form1");
+	var y = document.forms.namedItem("form2");
+	var form = new FormData(y);
+	var formData = {};
+	var count = parseInt(formData.cnt);
+	var keys = [];
+	var values = [];
+	var j = 1;
+	var k = 1;
+	var arr={};
+	var attr={};
+	for(var i=0;i<x.length;i++)
+	{
+		var key = "key" + j;
+		var val = "val" + k;
+		//console.log(key + " " + val + " " + x.elements[i].name + " " + x.elements[i].value);
+		if(x.elements[i].name=="file"){
+			console.log(x.elements[i].value);
+			console.log(typeof x.elements[i].value);
+			}
+		else{
+			if(x.elements[i].name === key) {
+				keys[parseInt(j)-1] = x.elements[i].value;
+				j = parseInt(j) + 1;
+				//attr[x.elements[i].name]=x.elements[i].value;
+			} else if( x.elements[i].name === val) {
+				values[parseInt(k)-1] = x.elements[i].value;
+				k = parseInt(k) + 1;
+			} else if(x.elements[i].name!="file" && x.elements[i].name!=val)
+			{
+				//formData[x.elements[i].name]=x.elements[i].value;
+				arr[x.elements[i].name]=x.elements[i].value;
+			}
+			}
+
+	}
+	console.log(arr);
+  console.log(keys);
+  console.log(values);
+	//form.append("formData",arr)
+	//console.log(form);
+	//formData = JSON.parse(formData);
+	var itemUpload = JSON.stringify({
+		"listingName" : arr.listingname,
+        "itemId": $('#selleremail').val() + arr.catId + arr.subcatId + arr.itemId,
+        "subCategory": {
+            "id": arr.subcatId,
+        },
+        "user": {
+            "id": JSON.parse(getCookie("seller_details")).id
+        },
+        "quantity": arr.quantity,
+        "price": arr.price,
+        "colour": arr.colour,
+        "brand": arr.brand,
+        "manufacture_Date": arr.manufacture_Date,
+        "description": arr.description,
+        "discount": arr.discount,
+        "bdaydiscount": arr.bdaydiscount
+    });
+console.log(itemUpload);
+form.append("formData",itemUpload);
+	//ajax post jquery request
+var xhr = new XMLHttpRequest();
+xhr.open("POST", "http://localhost:8080/item/addItem");
+//xhr.setRequestHeader("Content-Type", "multipart/form-data");
+var itemDetailsAdded=0;
+xhr.send(form);
+xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+        var json_data = xhr.responseText;
+//        var dis=document.getElementById("display");
+        // document.getElementById("f1").reset();
+        // document.getElementById("f2").reset();
+        if(json_data == 0) $('#eexist-msg').show("slow");
+        else if(json_data >= 1) {
+        	$('#success-msg').show("slow");
+        	//x.reset();
+        	//y.reset();
+          console.log("itemId:"+json_data);
+          var arrayItemDetails=[];
+          for(var x=0;x<keys.length;x++){
+            var obj={
+              "item":{"id":json_data},
+              "attr_name":keys[x],
+              "attr_val":values[x]
+            };
+            arrayItemDetails[x]=obj;
+          }
+          console.log("array:"+arrayItemDetails);
+          console.log(JSON.stringify(arrayItemDetails));
+          $.ajax({
+            type : 'POST',
+            contentType : 'application/json',
+            url : ctxPath + "/details/addItems",
+            data : JSON.stringify(arrayItemDetails),
+            success : function(){
+              itemDetailsAdded=1;
+              console.log("add item:itemDetails added");
+            },
+            error: function(err) {
+              swal(JSON.stringify(err));
+            }
+          });
+          addItemFilters(json_data);
+        }
+		else $('#error-msg').show("slow");
+//        if(json_data==1){
+//        	$.
+////        	dis.innerHTML="Student Registration Successful";
+//        }else{
+//        	dis.innerHTML="There is an Error while registering";
+//        }
+    }
+};
+	}
+
+  function render(data){
+    console.log(data);
+  	swal({
+  		  title: "Success",
+  		  text: "Successful entry into the database!",
+  		  icon: "success"
+  		})
+  		.then((redirect) => {
+  		  if (redirect) {
+  			  window.location.reload(true);
+  		  }
+  		  else {
+  			  window.location.reload(true);
+  		  }
+  	});
+  }
+
+function checkCookie()
+{
+    var result = getCookie("seller_details");
+    if (result != "")
+    {
+    	var user = JSON.parse(result);
+		setCookie("seller_details", result, 30);
+		document.getElementById("sellername").innerText = user.firstName;
+		sellerId(user);
+		$('#selleremail').val(user.email);
+    }
+    else
+    {	swal("Login failed. Try again.");
+      	window.location = "sellerHub.jsp";
+    	logout();
+    }
+}
+
+
+
+function resetCookie()
+{
+    var user = getCookie("user_details");
+    if (user != "")
+    {
+		setCookie("user_details", user, 30);
+		sellerId(JSON.parse(user));
+    }
+    else
+    {
+    	logout();
+    }
+}
+function getSelectedText(elementId) {
+    var elt = document.getElementById(elementId);
+
+    if (elt.selectedIndex == -1)
+        return null;
+
+    return elt.options[elt.selectedIndex].text;
+}
+
+function sellerId(user)
+{
+
+	$('#sellerid').val(user.id);
+	console.log("seller id "+ user.id);
+	//swal(user.id);
+	return true;
+
+}
+
+function logout()
+{
+	deleteCookie("seller_details");
+}
+
+	function fetch()
+	{
+		$.ajax(
+		{
+			type : 'GET',
+			contentType : 'application/json',
+			url : ctxPath + "/categories",
+			dataType : "json", // data type of response
+			success : function(result){
+				var data="<select id='catId' name='catId' style=\" background-color:white; font-size:20px;\">"+"<option value=' "+0+" '>Select a category</option>";
+	            for(var i in result){
+	               data+="<option value='"+result[i].id+"'>"+result[i].categoryName+"</option>";
+	            }
+	            data += "</select>";
+	            $('#cat-content').html(data);
+	    	},
+	    	error:function() {
+	        	//swal("error occurred");
+	    	}
+		});
+	}
+
+	function DispSubCat()
+	{
+		if($("#catId").val()==0)
+			{
+			    swal("Select A Category");
+			}
+		else
+		{
+			var categoryId = $("#catId").val();
+			$.ajax(
+			{
+				type : 'GET',
+				contentType : 'application/json',
+				url : ctxPath + "/subcategories/category/"+categoryId,
+				dataType : "json", // data type of response
+				success : function(result){
+					var data="<select id='subcatId'  name ='subcatId' style=\" background-color:white; font-size:20px;\">"+"<option value=' "+0+" '>Select a sub-category</option>";
+			        for(var i in result){
+			        		data+="<option value='"+result[i].id+"'>"+result[i].subcategoryName+"</option>";
+		            }
+			        data += "</select>";
+		            $('#sub-cat-content').html(data);
+		    		},
+			    	error:function(data,status) {
+
+			    	}
+			});
+		}
+	}
+
+  function populateFilters(){
+    var subCategoryId=$("#subcatId").val();
+    console.log("popuLate Filters: subcategory id:"+subCategoryId);
+    if(parseInt(subCategoryId)>0){
+      //console.log("subCategory id >0");
+      $.ajax(
+			{
+				type : 'GET',
+				contentType : 'application/json',
+				url : ctxPath + "/filter/subcategory/"+subCategoryId,
+				dataType : "json", // data type of response
+        async:false,
+				success : function(result){
+              //console.log(result);
+              var data="";
+              for(var i in result){
+                //console.log(result[i]);
+                data+="<div id='filter"+i+"'>"+result[i].filterName+"</div>";
+                var res=populateFiltersValue(result[i].id,i);
+                data+=res;
+                //console.log("result:"+res);
+              }
+              //console.log("length:"+result.length);
+              filterCount=result.length;
+              $("#dynamicFilters").html(data);
+		    		},
+			    	error:function(data,status) {
+
+			    	}
+			});
+    }
+    //addItemFilters(11);
+  }
+  function populateFiltersValue(filterId,count){
+    var res="";
+    console.log("populateFiltersValue:"+filterId);
+    $.ajax(
+    {
+      type : 'GET',
+      contentType : 'application/json',
+      url : ctxPath + "/filterValues/"+filterId,
+      dataType : "json", // data type of response
+      async:false,
+      success : function(result){
+            //console.log("filter result:"+result);
+            var data="<select id='filterId"+count+"'  name ='filterId' style=\" background-color:white; font-size:20px;\">"
+                      +"<option value=' "+0+" '>Select an option</option>";
+            for(var i in result){
+              data+="<option value='"+result[i].id+"'>"+result[i].value+"</option>";
+            }
+            data+="</select>";
+            //console.log("result:"+data);
+            res=data;
+          },
+          error:function(data,status) {
+
+          }
+    });
+    //console.log("result return:"+result);
+    return res;
+  }
+  function addItemFilters(itemId){
+    console.log("add item filters");
+    console.log("itemId:"+itemId);
+    var numFilters=filterCount;
+    console.log("filterCount:"+numFilters);
+    for(var i=0;i<numFilters;i++){
+      var id="#filterId"+i;
+      var filterId=$(id).val();
+      //console.log("filterId:"+filterId)
+      var itemFilter=JSON.stringify({
+        "filterValues":{"id":filterId},
+        "item":{"id":itemId}
+      });
+    //  console.log("filterCount:"+filterCount);
+      console.log(itemFilter);
+      $.ajax(
+      {
+        type : 'POST',
+        contentType : 'application/json',
+        url : ctxPath + "/itemFilter/create",
+        data:itemFilter,
+        async:false,
+        success : render(),
+        error:function(err) {
+                swal(JSON.stringify(err));
+            }
+      });
+    }
+  }
+//-----------------------------------------------------------------------------------
+
+
+</script>
+
+
+</body>
+</html>
