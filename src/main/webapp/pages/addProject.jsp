@@ -101,7 +101,13 @@ function fire_ajax_submit() {
 									    <span class="input-group-atext"> <i class="fa fa-building"></i> </span>
 									</div>
 									<select id="ptopic" name="institute" class="form-control">
-										<option selected="default" value="-1"> Select Topic</option>
+										<select id="ptopic" name="ptopic" class="form-control">
+										<option selected='default' value='-1'> Select Topics</option>
+										<option  value='1' id='1'>DevOps</option>
+										<option  value='2' id='2'>MAchine Learning</option>
+										<option  value='4' id='4'>Data modeling</option>
+										<option  value='3' id='3'>web developement</option>
+									</select>
 									</select>
 								</div>
 								<label>Name of Project</label> 
