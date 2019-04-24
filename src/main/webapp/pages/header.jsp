@@ -83,7 +83,7 @@
 				<div class="dropdown-menu"  id="rtopic">
 				</div>
 	</div>		
-	<div class="col-sm-4"></div> 
+	<div class="col-sm-6"></div> 
 	<div class="collapse navbar-collapse float-right" id="collapsibleNavbar" style="margin:10px 10px">
 		<a class="nav-link" href="home" style="color:white">Home</a>
 			
@@ -94,16 +94,6 @@
 				<a class="dropdown-item" href="addResearch">Add Research</a>
 			</div>
 		</div>
-				  
-		<div class="dropdown">
-			<button type="button" class="btn dropdown-toggle" data-toggle="dropdown" style="color:white">Messages</button>
-			<div class="dropdown-menu">
-				<a class="dropdown-item" href="addProject">Add Project</a>
-				<a class="dropdown-item" href="addResearch">Add Research</a>
-			</div>
-		</div> 
-				      
-		<a class="nav-link" href="profile" style="color:white">Profile</a>
 		 
 		     
 	</div>  
